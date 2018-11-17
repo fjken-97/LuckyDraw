@@ -50,14 +50,14 @@
 <body>
 <form action="/server_url" method="post" onsubmit="return beforeSubmit()">
     开始时间：<input id="username" type="text" name="username" /><br>
-    结束时间：<input id="password" type="password" name="password" /><br>
-	参与人数：<input id="password" type="password" name="password" /><br>
+    结束时间：<input id="password" type="text" name="password" /><br>
+	参与人数：<input id="password" type="text" name="password" /><br>
 	<tr>
 			<td>设置奖品：</td>
 			<td>
 					<select name="choujiang">        <!--下拉列表框-->
-						<option value="first">一等奖</option>
-						<option value="second" selected="selected">二等奖</option>
+						<option value="first"  selected="selected">一等奖</option>
+						<option value="second" >二等奖</option>
 						<option value="third">三等奖</option>
 					</select>
 			</td>
@@ -94,34 +94,84 @@
        <a href = "javascript:void(1)" onclick = "document.getElementById('light2').style.display='block';document.getElementById('fade').style.display='block'">○获奖名单</a>
         <div id="light2" class="white_content">
 		
-		<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script src="jquery.min.js"></script>
-</head>
-        <table>
-             <thead>
-			 <h2>获奖名单及奖品公示</h2>
-                <tr>
-                    <th>姓名    </th>
-                    <th>奖品    </th>
-                    
-                 </tr>
-              </thead>
+	<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta charset="utf-8">
+  <style type="text/css">
+    *{
+       margin:0px;
+       padding:0px;
+    }
+    body table{
+        border:1px solid black;
+    }
+    th{
+        border:1px solid black;
+        text-align:center;
+        line-height:center;
+        width:400px;
+        height:30px;
+    }
+    td{
+        border:1px solid black;
+        text-align:center;
+        line-height:center;
+    }
+  </style>
+ <script type="text/javascript">
+  function data(){
+    var str="[{'ename':'胡青元','salary':'2018','age':'一等奖'},{'ename':'胡展瑞','salary':'2018','age':'二等奖'},{'ename':'王雨勤','salary':'2018','age':'三等奖'}]";
+    var jsonObject=eval('('+str+')');
+    
+    for(var i=0;i<jsonObject.length;i++){
+      var tr=document.createElement('tr');
+      var tdename=document.createElement('td')
+      var tdsalary=document.createElement('td')
+      var tdage=document.createElement('td')
+      tdename.innerHTML=jsonObject[i].ename;
+      tdsalary.innerHTML=jsonObject[i].salary;
+      tdage.innerHTML=jsonObject[i].age;
  
-              <tbody class="table_node">
-                  <tr class="tr_node" >
-                    <!--动态载入数据-->
-                    </tr>
-                    <!-- more data -->
-              </tbody>
-         </table>
-    <script src="load_data.js"></script> <!--引入动态加载文件-->
-</body>
+      tr.appendChild(tdename);
+      tr.appendChild(tdsalary);
+      tr.appendChild(tdage);
+      var tbody=document.getElementById('tbody');
+      tbody.appendChild(tr);
+        }
+    }
+  </script>
+ 
+ </head>
+ 
+ <body>
+  <table>
+   <thead>
+    <tr>
+      <th>姓名</th>
+      <th>时间</th>
+      <th>奖品</th>
+      <th><input type='button' value='普通抽奖' onclick="data()"></th>
+	  <th><input type='button' value='过滤抽奖' onclick="data()"></th>
+	    <th><input type='button' value='深度抽奖' onclick="data()"></th>
+    </tr>
+   </thead>
+   <tbody id='tbody'>
+     
+   </tbody>
+  </table>
+ 
+ 
+ </body>
 </html>
+
+
 		
-<a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display='none';document.getElementById('fade').style.display='none'">点这里关闭本窗口</a></div> 
+<a href = "javascript:void(0)" onclick = "document.getElementById('light2').style.display='none';document.getElementById('fade').style.display='none'">关闭本窗口</a></div> 
         <div id="fade" class="black_overlay"></div> 
     </body> 
 
